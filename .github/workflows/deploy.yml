@@ -35,12 +35,12 @@ jobs:
 
       - name: Build project
         working-directory: ./portfolio-testeur-dupuis
-        run: bun run build
+        run: NITRO_PRESET=github-pages bun run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./portfolio-testeur-dupuis/dist"
+          path: "./portfolio-testeur-dupuis/.output/public"
 
   deploy:
     environment:
