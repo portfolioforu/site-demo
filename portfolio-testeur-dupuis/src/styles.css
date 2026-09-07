@@ -1,0 +1,125 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-glow: var(--glow);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.17 0.019 250);
+  --foreground: oklch(0.95 0.008 250);
+  --surface: oklch(0.213 0.021 252);
+  --card: oklch(0.222 0.022 252);
+  --card-foreground: oklch(0.95 0.008 250);
+  --popover: oklch(0.222 0.022 252);
+  --popover-foreground: oklch(0.95 0.008 250);
+  --primary: oklch(0.82 0.19 156);
+  --primary-foreground: oklch(0.19 0.03 160);
+  --secondary: oklch(0.28 0.025 252);
+  --secondary-foreground: oklch(0.95 0.008 250);
+  --muted: oklch(0.26 0.022 252);
+  --muted-foreground: oklch(0.7 0.018 252);
+  --accent: oklch(0.78 0.13 220);
+  --accent-foreground: oklch(0.19 0.03 250);
+  --destructive: oklch(0.63 0.21 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.32 0.024 252);
+  --input: oklch(0.32 0.024 252);
+  --ring: oklch(0.82 0.19 156);
+  --glow: oklch(0.82 0.19 156 / 0.28);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    background-image:
+      radial-gradient(60rem 40rem at 12% -8%, oklch(0.82 0.19 156 / 0.1), transparent 60%),
+      radial-gradient(50rem 34rem at 92% 4%, oklch(0.78 0.13 220 / 0.09), transparent 62%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: var(--color-glow);
+  }
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@utility card-panel {
+  position: relative;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--color-card) 92%, transparent),
+    color-mix(in oklab, var(--color-surface) 92%, transparent)
+  );
+  box-shadow: 0 1px 0 0 oklch(1 0 0 / 0.04) inset, 0 18px 40px -28px oklch(0 0 0 / 0.9);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--color-primary) 45%, var(--color-border));
+    box-shadow: 0 24px 60px -34px var(--color-glow);
+  }
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--color-foreground), var(--color-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
