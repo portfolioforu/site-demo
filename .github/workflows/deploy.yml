@@ -37,18 +37,10 @@ jobs:
         working-directory: ./portfolio-testeur-dupuis
         run: bun run build
 
-      - name: Find output directory
-        working-directory: ./portfolio-testeur-dupuis
-        run: |
-          if [ -d "dist" ]; then echo "BUILD_DIR=portfolio-testeur-dupuis/dist" >> $GITHUB_ENV;
-          elif [ -d "build" ]; then echo "BUILD_DIR=portfolio-testeur-dupuis/build" >> $GITHUB_ENV;
-          elif [ -d ".output/public" ]; then echo "BUILD_DIR=portfolio-testeur-dupuis/.output/public" >> $GITHUB_ENV;
-          else echo "BUILD_DIR=portfolio-testeur-dupuis" >> $GITHUB_ENV; fi
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.BUILD_DIR }}
+          path: "./portfolio-testeur-dupuis/.output/public"
 
   deploy:
     environment:
