@@ -30,17 +30,15 @@ jobs:
         uses: oven-sh/setup-bun@v1
 
       - name: Install dependencies
-        working-directory: ./portfolio-testeur-dupuis
         run: bun install
 
       - name: Build project
-        working-directory: ./portfolio-testeur-dupuis
         run: bun run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./portfolio-testeur-dupuis/dist"
+          path: "./dist"
 
   deploy:
     environment:
