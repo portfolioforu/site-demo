@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./portfolio-testeur-dupuis/.output/public"
+          path: "./portfolio-testeur-dupuis/dist/client"
 
   deploy:
     environment:
