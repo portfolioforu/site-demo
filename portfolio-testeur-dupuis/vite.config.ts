@@ -4,6 +4,7 @@ export default defineConfig({
   tanstackStart: {
     pages: [
       {
+        path: "src/routes",
         router: {
           type: 'static'
         }
