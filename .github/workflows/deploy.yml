@@ -35,7 +35,7 @@ jobs:
 
       - name: Build project
         working-directory: ./portfolio-testeur-dupuis
-        run: NITRO_PRESET=github-pages bun run build
+        run: bun run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
